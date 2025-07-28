@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@radix-ui/react-radio-group": "^1.2.2",
+    "axios": "^1.7.9",
+    "framer-motion": "^12.4.2"
+  }
+}

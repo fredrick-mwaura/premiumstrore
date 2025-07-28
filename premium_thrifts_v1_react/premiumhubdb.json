@@ -1,0 +1,169 @@
+{
+    "products": [
+      {
+        "id": "829a38d3-90b5-40b3-97e6-186149a1479d",
+        "title": "Majestic Mountain Graphic T-Shirt",
+        "price": 44,
+        "description": "Elevate your wardrobe with this stylish black t-shirt featuring a striking monochrome mountain range graphic. Perfect for those who love the outdoors or want to add a touch of nature-inspired design to their look.",
+        "images": [
+          "https://i.pinimg.com/736x/a5/50/7b/a5507b2916cff8725192292e26892402.jpg",
+          "https://i.pinimg.com/736x/9a/dd/28/9add28bcfb591ac9dde0baa9dad38277.jpg",
+          "https://i.pinimg.com/736x/ca/c2/e3/cac2e3725aeeb3b76b8e595fbea1f8bb.jpg",
+          "https://i.pinimg.com/736x/f7/3e/02/f73e023fa2a4fbe98d807a6a575cae5d.jpg"
+        ],
+        "category": {
+          "id": 1,
+          "name": "Clothes",
+          "image": "https://i.pinimg.com/736x/57/6d/f0/576df09f82bbb504a9fe8526d5d0d0ef.jpg"
+        },
+        "size": [
+          "small",
+          "medium",
+          "large",
+          "x-large"
+        ],
+        "color": "black",
+        "type": "t-shirt",
+        "availableColors": [
+          "black",
+          "white",
+          "gray"
+        ],
+        "quantity": 10,
+        "inStock": true,
+        "rating": 4.5,
+        "brand": "OutdoorStyle",
+        "material": "cotton"
+      },
+      {
+        "id": "320c7f6a-1996-41e5-ab05-20a4df3300a8",
+        "title": "Classic Leather Sneakers",
+        "price": 89,
+        "description": "Step out in style with these classic leather sneakers. Perfect for casual outings or a day at the office, these sneakers combine comfort and durability with a timeless design.",
+        "images": [
+          "https://i.pinimg.com/736x/13/7b/4f/137b4fbe29e6968c404b7fdf079582e8.jpg",
+          "https://i.pinimg.com/736x/c8/4e/d0/c84ed0f7d70120f626d639ad12c5e3e1.jpg",
+          "https://i.pinimg.com/736x/19/4f/70/194f70df05ac8119046579ea9d5a38b4.jpg",
+          "https://i.pinimg.com/736x/56/1b/92/561b92b05ab2b2bc8565c994e761dc7f.jpg"
+        ],
+        "category": {
+          "id": 2,
+          "name": "Shoes",
+          "image": "https://i.pinimg.com/736x/41/4e/d6/414ed62613618cccf3a014583b654f3c.jpg"
+        },
+        "size": [
+          "41",
+          "42",
+          "43",
+          "44"
+        ],
+        "color": "brown",
+        "type": "sneakers",
+        "availableColors": [
+          "brown",
+          "black",
+          "white"
+        ],
+        "quantity": 30,
+        "inStock": true,
+        "rating": 4.7,
+        "brand": "UrbanSteps",
+        "material": "leather"
+      },
+      {
+        "id": "0a02c878-f6cd-4202-8e5e-007c039f2e09",
+        "title": "Cozy Winter Sweater",
+        "price": 65,
+        "description": "Stay warm and stylish with this cozy winter sweater. Made from soft, high-quality wool, this sweater is perfect for cold days and nights.",
+        "images": [
+          "https://i.pinimg.com/736x/73/a8/a0/73a8a0fb18efe195d905b5b4260bc376.jpg",
+          "https://i.pinimg.com/736x/39/44/b5/3944b5d139c9ca77473f1b560c6aba30.jpg",
+          "https://i.pinimg.com/736x/17/d7/33/17d7333fdfabc1f1a06f6384c5a9cc65.jpg",
+          "https://i.pinimg.com/736x/93/dc/cb/93dccb08e2352ff842086bb5470e4565.jpg"
+        ],
+        "category": {
+          "id": 3,
+          "name": "Sweaters",
+          "image": "https://i.pinimg.com/736x/2c/05/dd/2c05dd6dca5bac3cfc38c1f046c32179.jpg"
+        },
+        "size": [
+          "small",
+          "medium",
+          "large",
+          "x-large"
+        ],
+        "color": "gray",
+        "type": "sweater",
+        "availableColors": [
+          "gray",
+          "navy",
+          "burgundy"
+        ],
+        "quantity": 40,
+        "inStock": true,
+        "rating": 4.8,
+        "brand": "WinterComfort",
+        "material": "wool"
+      },
+      {
+        "id": "029c8653-6340-4c2b-8a68-445fc605e62c",
+        "title": "Stylish Denim Jacket",
+        "price": 79,
+        "description": "Upgrade your wardrobe with this stylish denim jacket, perfect for any season. Features a classic fit and durable fabric.",
+        "images": [
+          "https://i.pinimg.com/736x/cf/09/89/cf0989bf808936b3481f8fb63cb31533.jpg",
+          "https://i.pinimg.com/736x/c6/39/c3/c639c38b5baedc938b4d1b9420284846.jpg",
+          "https://i.pinimg.com/736x/20/3e/f2/203ef29e26ddab6d4aea1633c554215b.jpg",
+          "https://i.pinimg.com/736x/d4/fa/45/d4fa458d88e78d638ff3619fe6aa8d69.jpg"
+        ],
+        "category": {
+          "id": 4,
+          "name": "Jackets",
+          "image": "https://i.pinimg.com/736x/23/50/65/23506567bef835e0019729320f9acdec.jpg"
+        },
+        "size": [
+          "small",
+          "medium",
+          "large",
+          "x-large"
+        ],
+        "color": "blue",
+        "type": "jacket",
+        "availableColors": [
+          "blue",
+          "black",
+          "gray"
+        ],
+        "quantity": 35,
+        "inStock": true,
+        "rating": 4.6,
+        "brand": "UrbanWear",
+        "material": "denim"
+      },
+      {
+        "id": "76755631-9217-4fed-bbf6-ddb052a6d22b",
+        "title": "Elegant Wristwatch",
+        "price": 120,
+        "description": "A premium wristwatch that combines elegance and functionality. Features a stainless steel case and leather strap.",
+        "images": [
+          "https://i.pinimg.com/736x/c8/4d/9f/c84d9f7e38e8d7d4ba7d47b51dbdf943.jpg",
+          "https://i.pinimg.com/736x/d1/a3/81/d1a38104782c741e416e9e43a7fb5705.jpg",
+          "https://i.pinimg.com/736x/38/26/37/38263712d0538beb29175af57429e328.jpg",
+          "https://i.pinimg.com/736x/02/bb/88/02bb88c48d035656a5448ddd811003c8.jpg"
+        ],
+        "category": {
+          "id": 5,
+          "name": "Accessories",
+          "image": "https://i.pinimg.com/736x/d8/c1/75/d8c1755e933cc227f6041b4c4e091910.jpg"
+        },
+        "type": "watch",
+        "quantity": 20,
+        "inStock": true,
+        "rating": 4.9,
+        "brand": "Timeless",
+        "material": "stainless steel & leather"
+      }
+    ],
+    "wishlist": [],
+    "cart": []
+  }

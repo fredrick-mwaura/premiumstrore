@@ -1,0 +1,218 @@
+import React, { useEffect, useState } from "react";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useParams, useLocation } from "react-router-dom";
+import { Heart, ShoppingCart, ChevronLeft, ChevronRight } from "lucide-react";
+import DynamicBreadcrumbs from "../../Layouts/Breadcrumb.jsx";
+import ProductNotFound from "./ProductNotFound.jsx";
+import { products as fetchProducts } from "../items.ts";
+import { useCart } from '../CartContexts.tsx';
+import {useWishList} from '../wishListContext.jsx'
+import Footer from "@/components/footer.tsx";
+import SimilarProducts from "./similarProducts.jsx";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+
+const createSlug = (title) => title.toLowerCase().replace(/\s+/g, "-");
+
+const ProductView = () => {
+    const { addToCart } = useCart();
+    const { addToWishList, removeFromWishList, wishlist } = useWishList();
+    const location = useLocation();
+    const { slug } = useParams();
+    const [product, setProduct] = useState(null);
+    const [allProducts, setAllProducts] = useState([]);
+    const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedColor, setSelectedColor] = useState(null);
+
+    // Fetch products and product based on slug
+    useEffect(() => {
+        const loadProducts = async () => {
+            const data = await fetchProducts();
+            setAllProducts(data);
+
+            // Find the product by slug
+            const foundProduct = location.state || data.find(p => createSlug(p.title) === slug);
+
+            if (foundProduct) {
+                setProduct(foundProduct);
+                // Optional: You could add multiple images or handle images dynamically.
+            } else {
+                setProduct(null); // Set product as null if not found
+            }
+        };
+
+        loadProducts();
+    }, [slug, location.state]);
+
+    // Check if the current product is in the wishlist
+    const isInWishlist = product && Array.isArray(wishlist) && wishlist.some((item) => item.id === product.id);
+
+    // Mock multiple images for the product (you can replace this with real images)
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [productImages, setProductImages] = useState([]);
+
+    useEffect(() => {
+        if (product) {
+            setProductImages([product.image, product.image, product.image]);  
+        }
+    }, [product]);
+
+    if (!product) {
+        return <ProductNotFound />;
+    }
+
+    const { id, image, title, price, description } = product;
+
+    const colors = [
+        { name: 'Red', value: 'bg-red-500' },
+        { name: 'Blue', value: 'bg-blue-500' },
+        { name: 'Black', value: 'bg-black' },
+        { name: 'Gray', value: 'bg-gray-400' },
+        { name: 'Green', value: 'bg-green-500' },
+        { name: 'Purple', value: 'bg-purple-700' },
+        { name: 'Violet', value: 'bg-violet-300' },
+        { name: 'Dark Red', value: 'bg-red-800' }
+    ];
+
+    const sizes = [39, 40, 41, 42, 43, 44,];
+
+    // Functions for image navigation
+    const nextImage = () => {
+        setCurrentImageIndex((prevIndex) => prevIndex === productImages.length - 1 ? 0 : prevIndex + 1);
+    };
+
+    const prevImage = () => {
+        setCurrentImageIndex((prevIndex) => prevIndex === 0 ? productImages.length - 1 : prevIndex - 1);
+    };
+
+    return (
+        <div>
+            <div className="container mx-auto px-4 py-6 max-w-7xl">
+                <DynamicBreadcrumbs />
+
+                <div className="flex flex-col md:flex-row gap-8 mt-6">
+                    {/* Product Image Card */}
+                    <div className="w-full md:w-1/2 flex">
+                        <Card className="p-4 md:p-6 bg-white overflow-hidden w-full h-auto flex flex-col">
+                            <div className="relative flex-1 flex items-center justify-center">
+                                <img 
+                                    src={productImages[currentImageIndex]} 
+                                    alt={`${title} - view ${currentImageIndex + 1}`} 
+                                    className="max-w-full object-contain transition-all duration-300 hover:scale-105" 
+                                />
+
+                                {/* Navigation buttons */}
+                                <Button 
+                                    variant="outline" 
+                                    size="icon" 
+                                    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 border-gray-200"
+                                    onClick={prevImage}
+                                    aria-label="Previous image"
+                                >
+                                    <ChevronLeft className="h-4 w-4" />
+                                </Button>
+
+                                <Button 
+                                    variant="outline" 
+                                    size="icon" 
+                                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white/90 border-gray-200"
+                                    onClick={nextImage}
+                                    aria-label="Next image"
+                                >
+                                    <ChevronRight className="h-4 w-4" />
+                                </Button>
+                            </div>
+                        </Card>
+                    </div>
+
+                    {/* Product Details */}
+                    <div className="w-full md:w-1/2 flex">
+                        <div className="space-y-4 w-full flex flex-col">
+                            <div>
+                                <Badge variant="secondary" className="mb-2 bg-purple-100 text-purple-800 hover:bg-purple-200">
+                                    Featured
+                                </Badge>
+                                <h1 className="text-2xl md:text-3xl font-bold text-gray-800">{title}</h1>
+                                <h2 className="text-xl md:text-2xl font-semibold text-purple-700 mt-2">
+                                    $ {price.toFixed(2)}
+                                </h2>
+                            </div>
+
+                            <div className="bg-gray-50 p-4 rounded-lg">
+                                <p className="text-gray-700 leading-relaxed">{description}</p>
+                            </div>
+
+                            {/* Color and Size Selection */}
+                            <div>
+                                <h3 className="text-lg font-medium mb-3">Available Colors</h3>
+                                <div className="flex flex-wrap gap-3">
+                                    {colors.map((color, index) => (
+                                        <button 
+                                            key={index} 
+                                            className={cn(
+                                                "w-8 h-8 rounded-full border transition-all ",
+                                                color.value,
+                                                selectedColor === index 
+                                                    ? "ring-2 ring-purple-600 ring-offset-2" 
+                                                    : "hover:scale-110 border-transparent"
+                                            )}
+                                            onClick={() => setSelectedColor(index)}
+                                            aria-label={`Select ${color.name} color`}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 className="text-lg font-medium mb-3">Choose Size</h3>
+                                <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+                                    {sizes.map((size, index) => (
+                                        <button 
+                                            key={size} 
+                                            className={cn(
+                                                "border py-2 px-3 rounded-md transition-colors",
+                                                selectedSize === index 
+                                                    ? "bg-purple-600 text-white border-purple-600" 
+                                                    : "hover:border-purple-600 hover:text-purple-600"
+                                            )}
+                                            onClick={() => setSelectedSize(index)}
+                                        >
+                                            EU {size}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="flex gap-4 pt-2 mt-auto">
+                                <Button 
+                                    className="bg-purple-600 hover:bg-purple-700 text-white w-full py-6"
+                                    onClick={() => addToCart({ id, image, title, price, description })}
+                                >
+                                    <ShoppingCart className="mr-2 h-5 w-5" />
+                                    Add to Cart
+                                </Button>
+                                <Button className="bg-gray-100 text-gray-800 hover:bg-gray-200 border border-gray-300 w-1/4" 
+                                onClick={() => { isInWishlist ? removeFromWishList(id) : addToWishList({ id, image, title, price }) }}
+                                >
+                                    <Heart 
+                                        className="w-4 h-4 transition-colors" 
+                                        color={isInWishlist ? "red" : "gray"} 
+                                        fill={isInWishlist ? "red" : "none"} 
+                                    />
+                                    <span className="sr-only">Add to favorites</span>
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <SimilarProducts products={allProducts} currentProductId={id} />
+            </div>
+            <Footer />
+        </div>
+    );
+};
+
+export default ProductView;
